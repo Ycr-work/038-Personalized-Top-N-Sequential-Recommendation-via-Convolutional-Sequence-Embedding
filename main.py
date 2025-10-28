@@ -18,9 +18,9 @@ def str2bool(s):
 
 
 parser = argparse.ArgumentParser()
-# data arguments
-parser.add_argument('--data', nargs='?', default='../datasets/ML1M/data',
-                    help='data directory')
+# toys_data arguments
+parser.add_argument('--toys_data', nargs='?', default='../datasets/ML1M/toys_data',
+                    help='toys_data directory')
 # train arguments
 parser.add_argument('--epoch', type=int, default=100,
                     help='Number of max epochs.')
@@ -99,12 +99,12 @@ if __name__ == '__main__':
     data_folder = args.data
     data_name = args.data.split('/')[2]
 
-    # statis data
+    # statis toys_data
     statis_data = pd.read_pickle(os.path.join(data_folder, 'data_statis.df'))  # includeing seq_len and item_num
 
-    # train data
+    # train toys_data
     train_data = pd.read_pickle(os.path.join(data_folder, 'train.df'))
-    # eval data
+    # eval toys_data
     is_test = args.is_test
     data_type = args.type
 
@@ -156,7 +156,7 @@ if __name__ == '__main__':
     # print(model.parameters)
     for name, parameters in model.named_parameters():
         print(name, ':', parameters.size())
-    print("data number of click :{} , data number of purchase :{}".format(
+    print("toys_data number of click :{} , toys_data number of purchase :{}".format(
         train_data[train_data['is_buy'] == 0].shape[0],
         train_data[train_data['is_buy'] == 1].shape[0],
     ))
